@@ -1,0 +1,85 @@
+<h1>Vechiles</h1>
+
+<input type="text" [(ngModel)]="term" (keyup)="filter()" placeholder="enter here to search">
+
+<select [(ngModel)]="column">
+    <option>Vehicle</option>
+    <option>cost</option>
+    <option>fuel</option>
+    <option>Color</option>
+</select>
+
+   <select [(ngModel)]="order">
+    <option>asc</option>
+    <option>decs</option>
+   </select>
+
+   <button (click)="sort()">sort</button>
+
+   <select [(ngModel)]="limit">
+    <option>10</option>
+    <option>20</option>
+    <option>30</option>
+   </select>
+
+   <select [(ngModel)]="page">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+
+   </select>
+
+   
+   <button (click)="pagination()">Pagination</button>
+
+
+   <button routerLink="/dashboard/create-vehicle">Create vehicle</button>
+
+
+<table class=" table table-dark">
+    <thead>
+        <tr>
+            <th>S No</th>
+            <th>Vehilce Name</th>
+            <th>Color</th>
+            <th>Cost</th>
+            <th>Fuel</th>
+            <th>Image</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let vechile of vechiles; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{vechile.Vehicle}}</td>
+            <td>{{vechile.color}}</td>
+            <td>{{vechile.cost}}</td>
+            <td>{{vechile.fuel}}</td>
+            <td><img [src]="vechile.image" alt="" width="50px"></td>
+
+
+
+        <td><button routerLink="/dashboard/vehicle-details/{{vechile.id}}"
+            class="btn btn-primary">View</button></td> 
+
+
+         <td><button routerLink="/dashboard/edit-vehicle/{{vechile.id}}"
+                class="btn btn-warning">Edit </button></td> 
+        
+
+
+            <td>
+                <button (click)="delete(vechile.id)"
+                class="btn btn-danger">Delete</button>
+            </td>
+
+
+
+
+
+        </tr> 
+    </tbody>
+</table>
